@@ -68,9 +68,17 @@ public class TestControladores {
 	
 	@Test
 	void testDeleteHeroe() {
+		Heroe heroe = Heroe.builder()
+				.nombre("Capitán Trueno")
+				.ciudad("Murcia")
+				.superpoder("España")
+				.build();
+		
+		heroesRepo.save(heroe);
+		
 		int numHeroesPre = heroesRepo.findAll().size();
 		
-		deleteController.deleteHeroe("1");
+		deleteController.deleteHeroe(heroe.getId());
 
 		int numHeroesPost = heroesRepo.findAll().size();
 		
@@ -102,7 +110,6 @@ public class TestControladores {
 	
 	@Test
 	void testFindByNombreLike() {
-		
 		Heroe heroe = Heroe.builder()
 				.ciudad("EEUU")
 				.nombre("Antorcha Humana")
