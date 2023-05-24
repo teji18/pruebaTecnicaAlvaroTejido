@@ -12,9 +12,9 @@ import com.alvaro.demo.heroes.model.Heroe;
 @Repository
 public interface HeroeRepository extends JpaRepository<Heroe, Integer>{
 
-	Optional<Heroe> findByNombre(String nombre);
+	Optional<Heroe> findByName(String name);
 	
-	@Query("FROM Heroe heroe WHERE UPPER(heroe.nombre) LIKE %:nombre%")
-	List<Heroe> findByNombreLike(String nombre);
+	@Query("FROM Heroe heroe WHERE UPPER(heroe.name) LIKE %:name%")
+	List<Heroe> findByNameLike(String name);
 
 }

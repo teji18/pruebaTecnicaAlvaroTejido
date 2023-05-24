@@ -8,7 +8,7 @@ import lombok.Data;
 public class AddHeroeRequest{
 
 	Long id;
-	String nombre;
-	String ciudad;
-	String superpoder;
+	String name;
+	String city;
+	String superpower;
 }

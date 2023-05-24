@@ -10,11 +10,11 @@ public interface HeroeService {
 
 	public void addHeroe(AddHeroeRequest request);
 	
-	public Heroe findHeroeByNombre(String nombre);
+	public Heroe findHeroeByName(String nombre);
 	
 	public List<Heroe> findAllHeroes();
 
-	public List<Heroe> findHeroeByNombreLike(String nombre);
+	public List<Heroe> findHeroeByNameLike(String nombre);
 	
 	public Heroe findHeroeById(int id);
 

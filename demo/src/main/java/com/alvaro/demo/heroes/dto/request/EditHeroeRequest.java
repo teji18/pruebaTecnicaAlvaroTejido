@@ -6,7 +6,7 @@ import lombok.Data;
 public class EditHeroeRequest {
 
 	int id;
-	String nombre;
-	String ciudad;
-	String superpoder;
+	String name;
+	String city;
+	String superpower;
 }

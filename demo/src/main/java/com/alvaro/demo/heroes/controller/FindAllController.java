@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alvaro.demo.heroes.annotation.TimeAnnotation;
 import com.alvaro.demo.heroes.dto.response.FindAllResponse;
 import com.alvaro.demo.heroes.service.HeroeService;
 
@@ -18,7 +19,8 @@ public class FindAllController {
 	 * Se obtienen todos los heroes
 	 * @return FindAllResponse
 	 */
-	@GetMapping(value = "heroes/findAll")
+	@GetMapping(value = "/heroes")
+	@TimeAnnotation
 	public FindAllResponse findAll() {
 		return FindAllResponse.builder()
 				.heroes(heroeService.findAllHeroes())

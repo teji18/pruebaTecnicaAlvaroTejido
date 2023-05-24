@@ -14,15 +14,15 @@ import com.alvaro.demo.heroes.controller.AddHeroeController;
 import com.alvaro.demo.heroes.controller.DeleteHeroeController;
 import com.alvaro.demo.heroes.controller.EditHeroeController;
 import com.alvaro.demo.heroes.controller.FindAllController;
-import com.alvaro.demo.heroes.controller.FindByNombreController;
-import com.alvaro.demo.heroes.controller.FindByNombreLikeController;
+import com.alvaro.demo.heroes.controller.FindByNameController;
+import com.alvaro.demo.heroes.controller.FindByNameLikeController;
 import com.alvaro.demo.heroes.dto.request.AddHeroeRequest;
 import com.alvaro.demo.heroes.dto.response.FindAllResponse;
 import com.alvaro.demo.heroes.model.Heroe;
 import com.alvaro.demo.heroes.repository.HeroeRepository;
 
 @SpringBootTest(classes = {DemoApplication.class})
-public class TestControladores {
+public class ControllerTests {
 	
 	@Autowired
 	HeroeRepository heroesRepo;
@@ -40,21 +40,21 @@ public class TestControladores {
 	FindAllController findAllController;
 	
 	@Autowired
-	FindByNombreController findByNombreController;
+	FindByNameController findBynameController;
 	
 	@Autowired
-	FindByNombreLikeController findByNombreLikeController;
+	FindByNameLikeController findBynameLikeController;
 	
 	@Test
 	void testAddHeroe() {
-		String ciudad = "Gotham";
-		String nombre = "Batman";
-		String superpoder = "Dinero ilimitado";
+		String city = "Gotham";
+		String name = "Batman";
+		String superpower = "Dinero ilimitado";
 		
 		AddHeroeRequest request = AddHeroeRequest.builder()
-				.ciudad(ciudad)
-				.nombre(nombre)
-				.superpoder(superpoder)
+				.city(city)
+				.name(name)
+				.superpower(superpower)
 				.build();
 		
 		int numHeroesPre = heroesRepo.findAll().size();
@@ -69,9 +69,9 @@ public class TestControladores {
 	@Test
 	void testDeleteHeroe() {
 		Heroe heroe = Heroe.builder()
-				.nombre("Capitán Trueno")
-				.ciudad("Murcia")
-				.superpoder("España")
+				.name("Capitán Trueno")
+				.city("Murcia")
+				.superpower("España")
 				.build();
 		
 		heroesRepo.save(heroe);
@@ -89,9 +89,9 @@ public class TestControladores {
 	void testFindAll() {
 		for(int i=0; i<3;i++) {
 			Heroe heroe = Heroe.builder()
-					.ciudad("New York_"+i)
-					.nombre("SuperHeroe_"+i)
-					.superpoder("superpoder_"+i)
+					.city("New York_"+i)
+					.name("SuperHeroe_"+i)
+					.superpower("superpower_"+i)
 					.build();
 			
 			heroesRepo.save(heroe);
@@ -109,47 +109,47 @@ public class TestControladores {
 	}
 	
 	@Test
-	void testFindByNombreLike() {
+	void testFindBynameLike() {
 		Heroe heroe = Heroe.builder()
-				.ciudad("EEUU")
-				.nombre("Antorcha Humana")
-				.superpoder("Fuego")
+				.city("EEUU")
+				.name("Antorcha Humana")
+				.superpower("Fuego")
 				.build();
 		
 		Heroe heroe2 = Heroe.builder()
-				.ciudad("Oregon")
-				.nombre("Hulk")
-				.superpoder("Fuerza")
+				.city("Oregon")
+				.name("Hulk")
+				.superpower("Fuerza")
 				.build();
 		
 		heroesRepo.save(heroe);
 		heroesRepo.save(heroe2);
 		
-		String nombre = "hu";
+		String name = "hu";
 		
-		int numHeroes = findByNombreLikeController.findByNombreLike(nombre)
+		int numHeroes = findBynameLikeController.findByNameLike(name)
 				.getHeroes().size();
 		assertEquals(2, numHeroes);
 	}
 	
 	@Test
-	void testFindByNombre() {
-		String nombre = "TEST_NOMBRE";
+	void testFindByname() {
+		String name = "TEST_name";
 		
 		Heroe heroe = Heroe.builder()
-				.nombre(nombre)
-				.ciudad(null)
-				.superpoder(null)
+				.name(name)
+				.city(null)
+				.superpower(null)
 				.build();
 		
-		Optional<Heroe> resultPre = heroesRepo.findByNombre(nombre);
+		Optional<Heroe> resultPre = heroesRepo.findByName(name);
 		
 		assertTrue(resultPre.isEmpty());
 		
 		heroesRepo.save(heroe);
 		
-		Optional<Heroe> resultPost = heroesRepo.findByNombre(nombre);
+		Optional<Heroe> resultPost = heroesRepo.findByName(name);
 		
-		assertEquals(nombre, resultPost.get().getNombre());
+		assertEquals(name, resultPost.get().getName());
 	}
 }

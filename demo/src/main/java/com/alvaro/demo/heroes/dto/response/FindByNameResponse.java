@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @SuperBuilder
-public class FindByNombreResponse extends HeroeResponse{
+public class FindByNameResponse extends HeroeResponse{
 	
 	Heroe heroe;
 

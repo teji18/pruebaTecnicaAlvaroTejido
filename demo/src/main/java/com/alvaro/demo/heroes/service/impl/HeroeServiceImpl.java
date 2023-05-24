@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alvaro.demo.heroes.annotation.TimeAnnotation;
 import com.alvaro.demo.heroes.dto.request.AddHeroeRequest;
 import com.alvaro.demo.heroes.dto.request.EditHeroeRequest;
 import com.alvaro.demo.heroes.model.Heroe;
@@ -25,14 +26,12 @@ public class HeroeServiceImpl implements HeroeService {
 	 */
 	@Override
 	public void addHeroe(AddHeroeRequest request) {
-//		Heroe heroe = Utils.requestToHeroe(request);
-		
 		Heroe heroe = Heroe.builder()
-				.nombre(!request.getNombre().isEmpty() ? request.getNombre() : null)
-				.ciudad(!request.getCiudad().isEmpty() ? request.getCiudad() : null)
-				.superpoder(!request.getSuperpoder().isEmpty() ? request.getSuperpoder() : null)
+				.name(!request.getName().isEmpty() ? request.getName() : null)
+				.city(!request.getCity().isEmpty() ? request.getCity() : null)
+				.superpower(!request.getSuperpower().isEmpty() ? request.getSuperpower() : null)
 				.build();
-				
+		
 		heroeRepository.saveAndFlush(heroe);
 	}
 
@@ -43,8 +42,8 @@ public class HeroeServiceImpl implements HeroeService {
 	 * @return los heroes específicos
 	 */
 	@Override
-	public Heroe findHeroeByNombre(String nombre) {
-		Optional<Heroe> heroe = heroeRepository.findByNombre(nombre);
+	public Heroe findHeroeByName(String nombre) {
+		Optional<Heroe> heroe = heroeRepository.findByName(nombre);
 		return heroe.isPresent() ? heroe.get() : null;
 	}
 
@@ -66,8 +65,8 @@ public class HeroeServiceImpl implements HeroeService {
 	 * @return los heroes específicos
 	 */
 	@Override
-	public List<Heroe> findHeroeByNombreLike(String nombre) {
-		return heroeRepository.findByNombreLike(nombre.toUpperCase());
+	public List<Heroe> findHeroeByNameLike(String nombre) {
+		return heroeRepository.findByNameLike(nombre.toUpperCase());
 	}
 
 	/**
@@ -113,12 +112,12 @@ public class HeroeServiceImpl implements HeroeService {
 		Optional<Heroe> optHeroe = heroeRepository.findById(request.getId());
 		if(optHeroe.isPresent()) {
 			Heroe heroe = optHeroe.get();
-			if(!request.getNombre().isEmpty())
-				heroe.setNombre(request.getNombre());
-			if(!request.getCiudad().isEmpty())
-				heroe.setCiudad(request.getCiudad());
-			if(!request.getSuperpoder().isEmpty())
-				heroe.setSuperpoder(request.getSuperpoder());
+			if(!request.getName().isEmpty())
+				heroe.setName(request.getName());
+			if(!request.getCity().isEmpty())
+				heroe.setCity(request.getCity());
+			if(!request.getSuperpower().isEmpty())
+				heroe.setSuperpower(request.getSuperpower());
 			
 			heroeRepository.saveAndFlush(heroe);
 			return heroe;

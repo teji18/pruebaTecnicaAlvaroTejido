@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @SuperBuilder
-public class FindByNombreLikeResponse extends HeroeResponse{
+public class FindByNameLikeResponse extends HeroeResponse{
 	
 	List<Heroe> heroes;
 

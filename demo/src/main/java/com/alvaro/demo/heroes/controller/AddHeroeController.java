@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alvaro.demo.heroes.annotation.TimeAnnotation;
 import com.alvaro.demo.heroes.dto.request.AddHeroeRequest;
 import com.alvaro.demo.heroes.dto.response.HeroeResponse;
 import com.alvaro.demo.heroes.service.HeroeService;
@@ -21,7 +22,8 @@ public class AddHeroeController {
 	 * @param request
 	 * @return
 	 */
-	@PostMapping(value = "heroes/addHeroe")
+	@PostMapping(value = "/heroes/addHeroe")
+	@TimeAnnotation
 	public HeroeResponse addHeroe(@RequestBody AddHeroeRequest request) {
 		heroeService.addHeroe(request);
 		return HeroeResponse.builder()

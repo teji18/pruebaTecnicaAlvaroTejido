@@ -23,7 +23,7 @@ public class Heroe {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	int id;
 	
-	String nombre;
-	String superpoder;
-	String ciudad;
+	String name;
+	String superpower;
+	String city;
 }

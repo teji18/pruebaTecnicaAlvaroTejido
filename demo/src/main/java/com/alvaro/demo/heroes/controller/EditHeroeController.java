@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alvaro.demo.heroes.annotation.TimeAnnotation;
 import com.alvaro.demo.heroes.dto.request.EditHeroeRequest;
 import com.alvaro.demo.heroes.dto.response.EditHeroeResponse;
 import com.alvaro.demo.heroes.model.Heroe;
@@ -24,7 +25,8 @@ public class EditHeroeController {
 	 * @throws CustomException
 	 * @throws RestTemplateException
 	 */
-	@PostMapping(value = "heroes/editHeroe")
+	@PostMapping(value = "/heroes/editHeroe")
+	@TimeAnnotation
 	public EditHeroeResponse editHeroe(@RequestBody EditHeroeRequest request) {
 		Heroe heroe = heroeService.editHeroe(request);
 		String result = (heroe == null 
