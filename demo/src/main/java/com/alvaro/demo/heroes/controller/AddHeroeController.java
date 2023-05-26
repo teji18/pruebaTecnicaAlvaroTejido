@@ -19,7 +19,7 @@ public class AddHeroeController {
 	
 	/**
 	 * Se añade un heroe al sistema
-	 * @param request
+	 * @param AddHeroeRequest
 	 * @return
 	 */
 	@PostMapping(value = "/heroes/addHeroe")

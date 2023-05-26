@@ -20,10 +20,8 @@ public class EditHeroeController {
 	
 	/**
 	 * Se edita un heroe, si existe su id.
-	 * @param request
-	 * @return
-	 * @throws CustomException
-	 * @throws RestTemplateException
+	 * @param EditHeroRequest
+	 * @return EditHeroResponse
 	 */
 	@PostMapping(value = "/heroes/editHeroe")
 	@TimeAnnotation

@@ -13,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RestExceptionHandler {
 
+	/**
+	 * Método que caza las excepciones y crea una respuesta concreta.
+	 * @param e
+	 * @return
+	 */
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseEntity<HeroeResponse> processErrorResponse(Exception e) {

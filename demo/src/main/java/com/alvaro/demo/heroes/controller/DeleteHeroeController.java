@@ -18,10 +18,8 @@ public class DeleteHeroeController {
 	
 	/**
 	 * Se borra un hero del sistema, si existe su id
-	 * @param request
-	 * @return
-	 * @throws CustomException
-	 * @throws RestTemplateException
+	 * @param id
+	 * @return HeroResponse
 	 */
 	@GetMapping(value = "/heroes/deleteHeroe")
 	@TimeAnnotation
